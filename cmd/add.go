@@ -9,8 +9,8 @@ import (
 )
 
 type Task struct {
-	Description string `json:"description`
-	Done        bool   `json:"done`
+	Description string `json:"description"`
+	Done        bool   `json:"done"`
 }
 
 var addCmd = &cobra.Command{
@@ -21,6 +21,7 @@ var addCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		description := args[0]
 		tasks := loadTasks()
+		tasks = append(tasks, Task{Description: description, Done: false})
 		saveTasks(tasks)
 		fmt.Printf("Task added: %s\n", description)
 	},
